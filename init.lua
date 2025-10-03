@@ -6,6 +6,8 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
+vim.o.guicursor = vim.o.guicursor .. ',i:block-Cursor'
+vim.o.guicursor = vim.o.guicursor .. ',n:block-blinkwait150-blinkon150-blinkoff150'
 
 -- [[ Setting options ]]
 -- See `:help vim.o`

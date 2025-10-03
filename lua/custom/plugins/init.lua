@@ -1,7 +1,3 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 return {
   {
     'gthelding/monokai-pro.nvim',
@@ -10,6 +6,14 @@ return {
         filter = 'ristretto',
         override = function()
           return {
+            -- General highlight groups for functions (from previous step)
+            -- ['@function'] = { fg = '#fd6883' },
+            ['@function.call'] = { fg = '#fd6883' },
+            ['@function.method'] = { fg = '#fd6883' },
+            ['@method'] = { fg = '#fd6883' },
+            ['@function.builtin'] = { fg = '#fd6883' },
+            -- ['@function.macro'] = { fg = '#fd6883' },
+
             nontext = { fg = '#948a8b' },
             miniiconsgrey = { fg = '#948a8b' },
             miniiconsred = { fg = '#fd6883' },
@@ -63,5 +67,32 @@ return {
       -- See also `vertical_bar_cursor_insert_mode` and `distance_stop_animating_vertical_bar`.
       smear_insert_mode = false,
     },
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^6', -- Recommended
+    lazy = false, -- This plugin is already lazy
+    ['rust-analyzer'] = {
+      cargo = {
+        allFeatures = true,
+      },
+      diagnostics = {
+        disabled = { 'needless_return' },
+      },
+    },
+  },
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    ---@type Flash.Config
+    opts = {},
+  -- stylua: ignore
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
   },
 }
