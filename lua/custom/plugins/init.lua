@@ -6,6 +6,7 @@ return {
         filter = 'ristretto',
         override = function()
           return {
+
             -- General highlight groups for functions (from previous step)
             -- ['@function'] = { fg = '#fd6883' },
             ['@function.call'] = { fg = '#fd6883' },
@@ -13,6 +14,9 @@ return {
             ['@method'] = { fg = '#fd6883' },
             ['@function.builtin'] = { fg = '#fd6883' },
             -- ['@function.macro'] = { fg = '#fd6883' },
+
+            -- for let
+            ['@keyword'] = { fg = '#f38d70' }, --
 
             nontext = { fg = '#948a8b' },
             miniiconsgrey = { fg = '#948a8b' },
@@ -76,9 +80,6 @@ return {
       cargo = {
         allFeatures = true,
       },
-      diagnostics = {
-        disabled = { 'needless_return' },
-      },
     },
   },
   {
@@ -94,5 +95,41 @@ return {
             { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
             { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
         },
+  },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+      'TmuxNavigatorProcessList',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('nvim-ts-autotag').setup {
+        opts = {
+          enable_close = true,
+          enable_rename = true,
+          enable_close_on_slash = false,
+        },
+        per_filetype = {
+          ['html'] = {
+            enable_close = false,
+          },
+        },
+      }
+    end,
   },
 }
