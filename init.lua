@@ -19,7 +19,7 @@ vim.o.clipboard = 'unnamedplus'
 
 vim.o.tabstop = 4 -- Number of spaces a tab character represents
 vim.o.shiftwidth = 4 -- Size of an indent (used for autoindent, '>>', '<<', etc.)
-vim.o.expandtab = true -- Converts tabs to spaces
+vim.o.expandtab = false -- Converts tabs to spaces
 
 -- Make line numbers default
 vim.o.number = true
@@ -74,7 +74,7 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -869,7 +869,6 @@ require('lazy').setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
-  require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
