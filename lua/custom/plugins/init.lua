@@ -12,7 +12,7 @@ return {
             ['@function.call'] = { fg = '#fd6883' },
             ['@function.method'] = { fg = '#fd6883' },
             ['@method'] = { fg = '#fd6883' },
-            ['@function.builtin'] = { fg = '#fd6883' },
+            -- ['@function.builtin'] = { fg = '#fd6883' },
             -- ['@function.macro'] = { fg = '#fd6883' },
 
             -- for let

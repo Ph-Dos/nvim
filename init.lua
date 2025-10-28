@@ -10,10 +10,7 @@ vim.o.guicursor = vim.o.guicursor .. ',i:block-Cursor'
 vim.o.guicursor = vim.o.guicursor .. ',n:block-blinkwait150-blinkon150-blinkoff150'
 
 -- [[ Setting options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
---
+-- See `:help vim.o` NOTE: You can change these options as you wish! For more options, you can see `:help option-list`
 -- vim.o.autochdir = true
 vim.o.clipboard = 'unnamedplus'
 
@@ -858,9 +855,8 @@ require('lazy').setup({
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
       },
-      indent = { enable = true, disable = { 'ruby' } },
+      indent = { enable = true },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
