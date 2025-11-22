@@ -6,18 +6,6 @@ return {
         filter = 'ristretto',
         override = function()
           return {
-
-            -- General highlight groups for functions (from previous step)
-            -- ['@function'] = { fg = '#fd6883' },
-            ['@function.call'] = { fg = '#fd6883' },
-            ['@function.method'] = { fg = '#fd6883' },
-            ['@method'] = { fg = '#fd6883' },
-            -- ['@function.builtin'] = { fg = '#fd6883' },
-            -- ['@function.macro'] = { fg = '#fd6883' },
-
-            -- for let
-            ['@keyword'] = { fg = '#f38d70' }, --
-
             nontext = { fg = '#948a8b' },
             miniiconsgrey = { fg = '#948a8b' },
             miniiconsred = { fg = '#fd6883' },
@@ -39,10 +27,7 @@ return {
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {},
-    -- Optional dependencies
     dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
   },
   {
