@@ -957,11 +957,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
       return
     end
 
-    local info = vim.fn.getbufinfo(buf)[1]
-    if info.changed == 1 then
-      return
-    end
-
     vim.api.nvim_buf_delete(buf, { force = false })
   end,
 })
