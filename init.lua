@@ -918,3 +918,50 @@ vim.api.nvim_set_hl(0, 'LspInlayHint', {
   bg = '#413837',
   italic = true,
 })
+
+local function get_oldest_buffer(bufs)
+  local oldest_buf_time = math.huge
+  local oldest_buf
+  for _, buf in ipairs(bufs) do
+    if buf.lastused < oldest_buf_time then
+      oldest_buf_time = buf.lastused
+      oldest_buf = buf.bufnr
+    end
+  end
+
+  return oldest_buf
+end
+
+local BUF_CAP = 6
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    local listed_bufs = vim.fn.getbufinfo { buflisted = 1 }
+    if #listed_bufs <= BUF_CAP then
+      return
+    end
+
+    local valid_bufs = {}
+    for _, buf in ipairs(listed_bufs) do
+      if buf.loaded == 1 and buf.name ~= '' and buf.changed == 0 then
+        table.insert(valid_bufs, buf)
+      end
+    end
+
+    if #valid_bufs <= BUF_CAP then
+      return
+    end
+
+    local buf = get_oldest_buffer(valid_bufs)
+    if not buf then
+      return
+    end
+
+    local info = vim.fn.getbufinfo(buf)[1]
+    if info.changed == 1 then
+      return
+    end
+
+    vim.api.nvim_buf_delete(buf, { force = false })
+  end,
+})
